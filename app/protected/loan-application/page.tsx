@@ -329,7 +329,7 @@ export default function LoanApplicationPage() {
                 {formData.loan_details.amount > 0 && formData.loan_details.term_months > 0 && (
                   <div className="bg-blue-50 p-4 rounded-lg">
                     <h3 className="font-semibold text-blue-900 mb-2">Loan Summary</h3>
-                    <div className="grid grid-cols-2 gap-4 text-sm">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
                       <div>
                         <span className="text-blue-700">Monthly Payment:</span>
                         <span className="font-semibold ml-2">N${calculateMonthlyPayment().toLocaleString()}</span>
