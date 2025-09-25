@@ -129,6 +129,9 @@ jobs:
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_OR_ANON_KEY }}
+          NEXT_PUBLIC_SITE_URL: https://lend.buffr.ai
+          API_URL: https://lend.buffr.ai/v1
+          FRONTEND_URL: https://lend.buffr.ai
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v3

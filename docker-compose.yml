@@ -46,7 +46,7 @@ services:
       - ADUMO_API_KEY=${ADUMO_API_KEY}
       
       # Security Configuration
-      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000,http://localhost:8082}
+      - CORS_ORIGINS=${CORS_ORIGINS:-https://lend.buffr.ai,http://localhost:3000,http://localhost:8082}
       - RATE_LIMIT_WINDOW=${RATE_LIMIT_WINDOW:-900000}
       - RATE_LIMIT_MAX=${RATE_LIMIT_MAX:-100}
       
@@ -69,8 +69,8 @@ services:
       args:
         NEXT_PUBLIC_SUPABASE_URL: ${NEXT_PUBLIC_SUPABASE_URL}
         NEXT_PUBLIC_SUPABASE_ANON_KEY: ${NEXT_PUBLIC_SUPABASE_ANON_KEY}
-        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-http://localhost:8001}
-        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+        NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://lend.buffr.ai/v1}
+        NEXT_PUBLIC_APP_URL: ${NEXT_PUBLIC_APP_URL:-https://lend.buffr.ai}
         NEXT_PUBLIC_ENVIRONMENT: ${NEXT_PUBLIC_ENVIRONMENT:-development}
     container_name: buffrlend-frontend
     restart: always
@@ -80,8 +80,8 @@ services:
       - NODE_ENV=${NODE_ENV:-development}
       - NEXT_PUBLIC_SUPABASE_URL=${NEXT_PUBLIC_SUPABASE_URL}
       - NEXT_PUBLIC_SUPABASE_ANON_KEY=${NEXT_PUBLIC_SUPABASE_ANON_KEY}
-      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-http://localhost:8001}
-      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-http://localhost:3000}
+      - NEXT_PUBLIC_API_URL=${NEXT_PUBLIC_API_URL:-https://lend.buffr.ai/v1}
+      - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-https://lend.buffr.ai}
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
       interval: 30s
