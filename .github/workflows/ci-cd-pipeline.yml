@@ -41,7 +41,7 @@ jobs:
   
   frontend-e2e:
     name: Frontend E2E Tests
-    uses: ./.github/workflows/frontend-playwright.yml
+    uses: ./.github/workflows/frontend-e2e-tests.yml
     with:
       node-version: '18'
     needs: [frontend-linting]  # Run E2E after linting passes
@@ -75,7 +75,7 @@ jobs:
   #     github.ref == 'refs/heads/main' && 
   #     github.event_name == 'push' &&
   #     (github.event.inputs.deploy != 'false')
-  #   uses: ./.github/workflows/deploy-to-digitalocean.yml
+  #   uses: ./.github/workflows/deploy-digitalocean.yml
   #   secrets:
   #     DIGITALOCEAN_HOST: ${{ secrets.DIGITALOCEAN_HOST }}
   #     DIGITALOCEAN_SSH_KEY: ${{ secrets.DIGITALOCEAN_SSH_KEY }}

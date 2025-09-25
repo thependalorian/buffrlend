@@ -29,57 +29,30 @@ jobs:
         python -m pip install --upgrade pip
         pip install bandit[toml] bandit-sarif-formatter
         
-    - name: Run Bandit security scan on Agent API
+    - name: Run Bandit security scan on Backend
       run: |
-        cd 6_Agent_Deployment/backend_agent_api
-        bandit -r . -f json -o bandit-agent-api.json || true
-        bandit -r . -f txt | tee bandit-agent-api.txt || true
-        
-    - name: Run Bandit security scan on RAG Pipeline
-      run: |
-        cd 6_Agent_Deployment/backend_rag_pipeline
-        bandit -r . -f json -o bandit-rag-pipeline.json \
-          --exclude=venv,venv_linux,__pycache__ || true
-        bandit -r . -f txt \
-          --exclude=venv,venv_linux,__pycache__ | tee bandit-rag-pipeline.txt || true
+        cd backend
+        bandit -r . -f json -o bandit-backend.json || true
+        bandit -r . -f txt | tee bandit-backend.txt || true
           
     - name: Generate SARIF output for GitHub
       run: |
-        cd 6_Agent_Deployment/backend_agent_api
-        bandit -r . -f sarif -o bandit-agent-api.sarif || true
-        
-        cd ../backend_rag_pipeline
-        bandit -r . -f sarif -o bandit-rag-pipeline.sarif \
-          --exclude=venv,venv_linux,__pycache__ || true
+        cd backend
+        bandit -r . -f sarif -o bandit-backend.sarif || true
           
     - name: Check for high severity issues
       run: |
-        # Check Agent API results
-        if [ -f 6_Agent_Deployment/backend_agent_api/bandit-agent-api.json ]; then
-          HIGH_ISSUES=$(jq '[.results[] | select(.issue_severity == "HIGH")] | length' 6_Agent_Deployment/backend_agent_api/bandit-agent-api.json)
-          MEDIUM_ISSUES=$(jq '[.results[] | select(.issue_severity == "MEDIUM")] | length' 6_Agent_Deployment/backend_agent_api/bandit-agent-api.json)
+        # Check Backend results
+        if [ -f backend/bandit-backend.json ]; then
+          HIGH_ISSUES=$(jq '[.results[] | select(.issue_severity == "HIGH")] | length' backend/bandit-backend.json)
+          MEDIUM_ISSUES=$(jq '[.results[] | select(.issue_severity == "MEDIUM")] | length' backend/bandit-backend.json)
           
-          echo "Agent API - High severity issues: $HIGH_ISSUES"
-          echo "Agent API - Medium severity issues: $MEDIUM_ISSUES"
-          
-          if [ "$HIGH_ISSUES" -gt 0 ]; then
-            echo "❌ High severity security issues found in Agent API!"
-            jq -r '.results[] | select(.issue_severity == "HIGH") | "HIGH: \(.test_id) in \(.filename):\(.line_number) - \(.issue_text)"' 6_Agent_Deployment/backend_agent_api/bandit-agent-api.json
-            exit 1
-          fi
-        fi
-        
-        # Check RAG Pipeline results
-        if [ -f 6_Agent_Deployment/backend_rag_pipeline/bandit-rag-pipeline.json ]; then
-          HIGH_ISSUES=$(jq '[.results[] | select(.issue_severity == "HIGH")] | length' 6_Agent_Deployment/backend_rag_pipeline/bandit-rag-pipeline.json)
-          MEDIUM_ISSUES=$(jq '[.results[] | select(.issue_severity == "MEDIUM")] | length' 6_Agent_Deployment/backend_rag_pipeline/bandit-rag-pipeline.json)
-          
-          echo "RAG Pipeline - High severity issues: $HIGH_ISSUES"
-          echo "RAG Pipeline - Medium severity issues: $MEDIUM_ISSUES"
+          echo "Backend - High severity issues: $HIGH_ISSUES"
+          echo "Backend - Medium severity issues: $MEDIUM_ISSUES"
           
           if [ "$HIGH_ISSUES" -gt 0 ]; then
-            echo "❌ High severity security issues found in RAG Pipeline!"
-            jq -r '.results[] | select(.issue_severity == "HIGH") | "HIGH: \(.test_id) in \(.filename):\(.line_number) - \(.issue_text)"' 6_Agent_Deployment/backend_rag_pipeline/bandit-rag-pipeline.json
+            echo "❌ High severity security issues found in Backend!"
+            jq -r '.results[] | select(.issue_severity == "HIGH") | "HIGH: \(.test_id) in \(.filename):\(.line_number) - \(.issue_text)"' backend/bandit-backend.json
             exit 1
           fi
         fi
@@ -92,8 +65,7 @@ jobs:
       with:
         name: bandit-results
         path: |
-          6_Agent_Deployment/backend_agent_api/bandit-*
-          6_Agent_Deployment/backend_rag_pipeline/bandit-*
+          backend/bandit-*
         retention-days: 30
 
   eslint-security:
@@ -109,18 +81,16 @@ jobs:
       with:
         node-version: '18'
         cache: 'npm'
-        cache-dependency-path: '6_Agent_Deployment/frontend/package-lock.json'
+        cache-dependency-path: 'package-lock.json'
         
     - name: Install dependencies and security plugins
       run: |
-        cd 6_Agent_Deployment/frontend
         npm ci
         # Install ESLint security plugins if not already present
         npm install --save-dev eslint-plugin-security eslint-plugin-react-hooks @typescript-eslint/eslint-plugin || true
         
     - name: Run ESLint security scan
       run: |
-        cd 6_Agent_Deployment/frontend
         # Run ESLint with security focus
         npx eslint . \
           --ext .js,.jsx,.ts,.tsx \
@@ -134,8 +104,6 @@ jobs:
           
     - name: Check for security issues
       run: |
-        cd 6_Agent_Deployment/frontend
-        
         if [ -f eslint-security.json ]; then
           # Count error-level issues (security problems)
           ERROR_COUNT=$(jq '[.[] | .messages[] | select(.severity == 2)] | length' eslint-security.json)
@@ -166,5 +134,5 @@ jobs:
       with:
         name: eslint-security-results
         path: |
-          6_Agent_Deployment/frontend/eslint-security.*
+          eslint-security.*
         retention-days: 30

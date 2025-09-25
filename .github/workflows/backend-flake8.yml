@@ -32,13 +32,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 flake8-docstrings flake8-import-order flake8-bugbear
         
-    - name: Lint Agent API with flake8
-      run: |
-        cd 6_Agent_Deployment/backend_agent_api
-        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+        - name: Lint Backend with flake8
+          run: |
+            cd backend
+            flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+            flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
         
-  flake8-rag-pipeline:
+  flake8-backend-services:
     runs-on: ubuntu-latest
     
     steps:
@@ -55,9 +55,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install flake8 flake8-docstrings flake8-import-order flake8-bugbear
         
-    - name: Lint RAG Pipeline with flake8
+    - name: Lint Backend Services with flake8
       run: |
-        cd 6_Agent_Deployment/backend_rag_pipeline
+        cd backend
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics \
           --exclude=venv,venv_linux,__pycache__,.git
@@ -65,6 +65,6 @@ jobs:
     - name: Create flake8 annotations
       if: always()
       run: |
-        cd 6_Agent_Deployment/backend_rag_pipeline
+        cd backend
         flake8 . --format='::error file=%(path)s,line=%(row)d,col=%(col)d::%(path)s:%(row)d:%(col)d: %(code)s %(text)s' \
           --exclude=venv,venv_linux,__pycache__,.git || true
