@@ -1,0 +1,61 @@
+# Environment files with secrets
+.env
+.env.local
+.env.development
+.env.production
+.env.staging
+.env.buffr
+
+# Google Drive credentials and tokens
+credentials.json
+token.json
+service_account.json
+
+# API Keys and Secrets
+*.key
+*.pem
+*.p12
+*.pfx
+
+# Documentation with secrets
+GOOGLE_OAUTH_SETUP.md
+GOOGLE_SIGNUP_IMPLEMENTATION_SUMMARY.md
+VERCEL_WORKLOAD_IDENTITY_SETUP.md
+
+# Development files
+README.md
+*.md
+docs/
+documentation/
+
+# Test files
+__tests__/
+*.test.*
+*.spec.*
+coverage/
+.nyc_output/
+
+# Development tools
+.eslintrc*
+.prettierrc*
+.editorconfig
+.vscode/
+.idea/
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.temp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Git
+.git/
+.gitignore

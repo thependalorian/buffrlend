@@ -1,0 +1,23 @@
+
+> dev
+> next dev --turbopack
+
+   ▲ Next.js 15.5.2 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://192.168.1.2:3000
+   - Environments: .env
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+ ✓ Starting...
+Creating turbopack project {
+  dir: '/Users/georgenekwaya/ai-agent-mastery/buffrlend-starter',
+  testMode: true
+}
+ ○ Compiling middleware ...
+ ✓ Compiled middleware in 1192ms
+ ✓ Ready in 6.7s
+ ⚠ Webpack is configured while Turbopack is not, which may cause problems.
+ ⚠ See instructions if you need to configure Turbopack:
+  https://nextjs.org/docs/app/api-reference/next-config-js/turbopack
+

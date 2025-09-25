@@ -1,0 +1,282 @@
+/**
+ * Mock company data for testing
+ * Includes partner companies, non-partners, and various verification statuses
+ */
+
+export const mockCompanies = {
+  partnerCompany: {
+    id: 'company-001',
+    name: 'ABC Corporation',
+    registration_number: 'REG001',
+    industry: 'Technology',
+    employee_count: 150,
+    partnership_status: 'verified',
+    salary_deduction_active: true,
+    partnership_tier: 'premium',
+    contact_email: 'hr@abccorp.com',
+    contact_phone: '+264612345678',
+    address: '123 Business Street, Windhoek, Namibia',
+    created_at: '2023-01-01T10:00:00Z',
+    updated_at: '2024-01-15T10:00:00Z',
+  },
+  premiumPartner: {
+    id: 'company-002',
+    name: 'Tech Solutions Ltd',
+    registration_number: 'REG002',
+    industry: 'Software Development',
+    employee_count: 75,
+    partnership_status: 'verified',
+    salary_deduction_active: true,
+    partnership_tier: 'premium',
+    contact_email: 'hr@techsolutions.com',
+    contact_phone: '+264612345679',
+    address: '456 Innovation Drive, Windhoek, Namibia',
+    created_at: '2023-02-01T10:00:00Z',
+    updated_at: '2024-01-10T10:00:00Z',
+  },
+  basicPartner: {
+    id: 'company-003',
+    name: 'Manufacturing Co',
+    registration_number: 'REG003',
+    industry: 'Manufacturing',
+    employee_count: 200,
+    partnership_status: 'verified',
+    salary_deduction_active: true,
+    partnership_tier: 'basic',
+    contact_email: 'hr@manufacturing.com',
+    contact_phone: '+264612345680',
+    address: '789 Industrial Park, Walvis Bay, Namibia',
+    created_at: '2023-03-01T10:00:00Z',
+    updated_at: '2024-01-05T10:00:00Z',
+  },
+  pendingPartner: {
+    id: 'company-004',
+    name: 'New Company Ltd',
+    registration_number: 'REG004',
+    industry: 'Retail',
+    employee_count: 50,
+    partnership_status: 'pending',
+    salary_deduction_active: false,
+    partnership_tier: null,
+    contact_email: 'hr@newcompany.com',
+    contact_phone: '+264612345681',
+    address: '321 Main Street, Swakopmund, Namibia',
+    created_at: '2024-01-20T10:00:00Z',
+    updated_at: '2024-01-20T10:00:00Z',
+  },
+  nonPartner: {
+    id: 'company-005',
+    name: 'Independent Business',
+    registration_number: 'REG005',
+    industry: 'Services',
+    employee_count: 25,
+    partnership_status: 'not_partnered',
+    salary_deduction_active: false,
+    partnership_tier: null,
+    contact_email: 'info@independent.com',
+    contact_phone: '+264612345682',
+    address: '654 Service Road, Otjiwarongo, Namibia',
+    created_at: '2023-12-01T10:00:00Z',
+    updated_at: '2023-12-01T10:00:00Z',
+  },
+  largeEnterprise: {
+    id: 'company-006',
+    name: 'Namibian Mining Corporation',
+    registration_number: 'REG006',
+    industry: 'Mining',
+    employee_count: 1000,
+    partnership_status: 'verified',
+    salary_deduction_active: true,
+    partnership_tier: 'enterprise',
+    contact_email: 'hr@namibianmining.com',
+    contact_phone: '+264612345683',
+    address: '987 Mining Complex, Tsumeb, Namibia',
+    created_at: '2022-01-01T10:00:00Z',
+    updated_at: '2024-01-01T10:00:00Z',
+  },
+}
+
+export const mockCompanySearchResults = {
+  // Search for "ABC" should return ABC Corporation
+  abcSearch: [
+    {
+      id: 'company-001',
+      name: 'ABC Corporation',
+      registration_number: 'REG001',
+      industry: 'Technology',
+      employee_count: 150,
+      partnership_status: 'verified',
+      salary_deduction_active: true,
+      partnership_tier: 'premium',
+    },
+  ],
+  // Search for "Tech" should return Tech Solutions Ltd
+  techSearch: [
+    {
+      id: 'company-002',
+      name: 'Tech Solutions Ltd',
+      registration_number: 'REG002',
+      industry: 'Software Development',
+      employee_count: 75,
+      partnership_status: 'verified',
+      salary_deduction_active: true,
+      partnership_tier: 'premium',
+    },
+  ],
+  // Search for "Mining" should return Namibian Mining Corporation
+  miningSearch: [
+    {
+      id: 'company-006',
+      name: 'Namibian Mining Corporation',
+      registration_number: 'REG006',
+      industry: 'Mining',
+      employee_count: 1000,
+      partnership_status: 'verified',
+      salary_deduction_active: true,
+      partnership_tier: 'enterprise',
+    },
+  ],
+  // Search for non-existent company should return empty array
+  emptySearch: [],
+}
+
+export const mockPartnershipTiers = {
+  basic: {
+    name: 'Basic',
+    description: 'Standard partnership with basic features',
+    features: [
+      'Salary deduction processing',
+      'Basic reporting',
+      'Email support',
+    ],
+    employee_limit: 100,
+    monthly_fee: 0,
+  },
+  premium: {
+    name: 'Premium',
+    description: 'Enhanced partnership with advanced features',
+    features: [
+      'Salary deduction processing',
+      'Advanced reporting and analytics',
+      'Priority support',
+      'Custom integration options',
+    ],
+    employee_limit: 500,
+    monthly_fee: 500,
+  },
+  enterprise: {
+    name: 'Enterprise',
+    description: 'Full-featured partnership for large organizations',
+    features: [
+      'Salary deduction processing',
+      'Comprehensive reporting and analytics',
+      'Dedicated account manager',
+      'Custom integrations',
+      'API access',
+      'White-label options',
+    ],
+    employee_limit: null, // Unlimited
+    monthly_fee: 2000,
+  },
+}
+
+export const mockCompanyVerification = {
+  verifiedCompany: {
+    company_id: 'company-001',
+    verification_status: 'verified',
+    verification_date: '2023-01-15T10:00:00Z',
+    verified_by: 'admin-456',
+    verification_notes: 'All documents verified and partnership agreement signed',
+    documents_verified: [
+      'company_registration',
+      'tax_clearance',
+      'banking_details',
+      'partnership_agreement',
+    ],
+  },
+  pendingVerification: {
+    company_id: 'company-004',
+    verification_status: 'pending',
+    verification_date: null,
+    verified_by: null,
+    verification_notes: 'Awaiting partnership agreement signature',
+    documents_verified: [
+      'company_registration',
+      'tax_clearance',
+      'banking_details',
+    ],
+    documents_pending: [
+      'partnership_agreement',
+    ],
+  },
+  failedVerification: {
+    company_id: 'company-failed-001',
+    verification_status: 'failed',
+    verification_date: '2024-01-10T10:00:00Z',
+    verified_by: 'admin-456',
+    verification_notes: 'Incomplete documentation and failed background check',
+    documents_verified: [],
+    documents_pending: [
+      'company_registration',
+      'tax_clearance',
+      'banking_details',
+      'partnership_agreement',
+    ],
+  },
+}
+
+export const mockCompanyEmployees = {
+  abcCorporationEmployees: [
+    {
+      id: 'emp-001',
+      user_id: 'user-123',
+      company_id: 'company-001',
+      employee_number: 'ABC001',
+      position: 'Software Developer',
+      department: 'IT',
+      employment_type: 'full_time',
+      monthly_salary: 25000,
+      start_date: '2023-01-01',
+      is_active: true,
+    },
+    {
+      id: 'emp-002',
+      user_id: 'user-456',
+      company_id: 'company-001',
+      employee_number: 'ABC002',
+      position: 'Project Manager',
+      department: 'IT',
+      employment_type: 'full_time',
+      monthly_salary: 35000,
+      start_date: '2023-02-01',
+      is_active: true,
+    },
+    {
+      id: 'emp-003',
+      user_id: 'user-789',
+      company_id: 'company-001',
+      employee_number: 'ABC003',
+      position: 'Intern',
+      department: 'IT',
+      employment_type: 'intern',
+      monthly_salary: 5000,
+      start_date: '2024-01-01',
+      end_date: '2024-06-30',
+      is_active: true,
+    },
+  ],
+  techSolutionsEmployees: [
+    {
+      id: 'emp-004',
+      user_id: 'user-tech-001',
+      company_id: 'company-002',
+      employee_number: 'TECH001',
+      position: 'Senior Developer',
+      department: 'Engineering',
+      employment_type: 'full_time',
+      monthly_salary: 40000,
+      start_date: '2023-03-01',
+      is_active: true,
+    },
+  ],
+}

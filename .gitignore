@@ -1,0 +1,92 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*.local
+.env
+.env.buffr
+.env.production
+.env.development
+.env.staging
+.env.*
+!.env.example
+
+# Google Drive credentials and tokens
+credentials.json
+token.json
+service_account.json
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json
+!next.config.ts
+!tailwind.config.ts
+!postcss.config.mjs
+!eslint.config.mjs
+!playwright.config.ts
+!jest.config.js
+!components.json
+
+# API Keys and Secrets
+*.key
+*.pem
+*.p12
+*.pfx
+*.secret
+*.private
+api-keys.txt
+secrets.txt
+
+# Documentation with secrets
+GOOGLE_OAUTH_SETUP.md
+GOOGLE_SIGNUP_IMPLEMENTATION_SUMMARY.md
+VERCEL_WORKLOAD_IDENTITY_SETUP.md
+GOOGLE_CLOUD_CONSOLE_REDIRECT_URIS.md
+SUPABASE_REDIRECT_UPDATE.md
+DEPLOYMENT_GUIDE.md
+SHARED_GOOGLE_AUTH_CONFIG.md
+*SECRET*
+*SECRETS*
+*CREDENTIALS*
+*KEYS*
+
+# Setup scripts with secrets
+setup-vercel-env.sh
+export-credentials.sh
+setup-core-env.sh
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

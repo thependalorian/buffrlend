@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.9%;
+    --primary: 0 0% 9%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 0 0% 96.1%;
+    --secondary-foreground: 0 0% 9%;
+    --muted: 0 0% 96.1%;
+    --muted-foreground: 0 0% 45.1%;
+    --accent: 0 0% 96.1%;
+    --accent-foreground: 0 0% 9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 0 0% 3.9%;
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+    --radius: 0.5rem;
+    
+    /* BuffrLend fintech-specific colors using chart system */
+    --loan-approved: hsl(var(--chart-2));
+    --loan-pending: hsl(var(--chart-4));
+    --loan-rejected: hsl(var(--destructive));
+    --payment-success: hsl(var(--chart-2));
+    --credit-excellent: hsl(var(--chart-2));
+    --credit-warning: hsl(var(--chart-4));
+  }
+  .dark {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  /* BuffrLend fintech specific component styles */
+  .loan-button {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+  
+  .loan-approved-badge {
+    @apply bg-green-50 text-green-700 border-green-200;
+  }
+  
+  .loan-pending-badge {
+    @apply bg-yellow-50 text-yellow-700 border-yellow-200;
+  }
+  
+  .loan-rejected-badge {
+    @apply bg-red-50 text-red-700 border-red-200;
+  }
+  
+  .fintech-card {
+    @apply bg-card text-card-foreground border rounded-lg shadow-sm;
+  }
+  
+  .glass-fintech {
+    @apply backdrop-blur-sm bg-white/80 border-white/20;
+  }
+  
+  /* Focus ring utility */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+  }
+  
+  /* Financial data display */
+  .currency-large {
+    @apply text-2xl font-bold;
+  }
+  
+  .currency-medium {
+    @apply text-lg font-semibold;
+  }
+  
+  .currency-small {
+    @apply text-base font-medium;
+  }
+}
+
+/* Custom blue-turquoise theme overrides */
+[data-theme="buffrlend"] {
+  --p: 217 91% 60%; /* Blue */
+  --s: 187 85% 53%; /* Cyan */
+  --a: 174 77% 40%; /* Teal */
+  --n: 215 25% 27%; /* Slate */
+  --b1: 222 84% 5%; /* Dark slate */
+  --in: 199 89% 48%; /* Sky blue */
+  --su: 160 84% 39%; /* Emerald */
+  --wa: 199 89% 48%; /* Sky blue instead of amber */
+  --er: 0 84% 60%; /* Red */
+}
+
+/* Custom gradient text for the hero section */
+.gradient-text {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 50%, #14b8a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Enhanced button hover effects */
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #0891b2 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #06b6d4 0%, #14b8a6 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #0891b2 0%, #0d9488 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.3);
+}

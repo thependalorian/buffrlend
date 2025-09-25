@@ -1,0 +1,32 @@
+# BuffrLend Terraform Variables Example
+# Copy this file to terraform.tfvars and fill in your actual values
+
+# DigitalOcean Configuration
+do_token = "your_digitalocean_api_token_here"
+region   = "fra1"  # Frankfurt region
+droplet_size = "s-2vcpu-4gb"
+
+# Domain Configuration
+domain_name = "lend.buffr.ai"
+email = "admin@buffr.ai"
+
+# SSH Configuration
+ssh_public_key_path = "~/.ssh/id_rsa.pub"
+admin_ip = "0.0.0.0/0"  # Restrict to your IP for security
+
+# Optional Services
+create_domain = true
+create_load_balancer = false
+create_database = false
+create_storage = true
+
+# Database Configuration (if create_database = true)
+db_size = "db-s-1vcpu-1gb"
+
+# Storage Configuration
+storage_region = "fra1"
+
+# Environment
+environment = "production"
+backup_enabled = true
+monitoring_enabled = true
