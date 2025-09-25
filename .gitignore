@@ -74,10 +74,15 @@ GOOGLE_CLOUD_CONSOLE_REDIRECT_URIS.md
 SUPABASE_REDIRECT_UPDATE.md
 DEPLOYMENT_GUIDE.md
 SHARED_GOOGLE_AUTH_CONFIG.md
+CONSOLIDATED_AUTH_SECURITY_GUIDE.md
 *SECRET*
 *SECRETS*
 *CREDENTIALS*
 *KEYS*
+
+# Template files with secrets
+env.template
+terraform/secrets.tfvars.example
 
 # Setup scripts with secrets
 setup-vercel-env.sh
